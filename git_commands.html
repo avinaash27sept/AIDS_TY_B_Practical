@@ -1,132 +1,210 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Git Commands Reference</title>
-	<style>
-		body{font-family:Arial,Helvetica,sans-serif;margin:20px;line-height:1.5}
-		h1,h2{color:#222}
-	pre{background:#f6f8fa;padding:10px;border-radius:4px}
-	section{margin-bottom:20px}
-	.cmd{font-weight:600}
-		.desc{margin-left:1rem;color:#333}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A concise reference guide to commonly used Git commands.">
+    <title>Git Commands Reference</title>
 </head>
-	<!--
-		To add the link from index.html, place this on the "Start Learning git" button or anchor:
-		<a href="git_commands.html">Start Learning git</a>
-		or if the button has an id, set: onclick="location.href='git_commands.html'"
-	-->
 
-	<h1>Git Commands Reference</h1>
-	<p>Concise, categorized git commands with short explanations.</p>
+<body>
+    <header>
+        <h1>Git Commands Reference</h1>
+        <p>Concise, categorized Git commands with short explanations.</p>
+    </header>
 
-	<section>
-	<h2>Getting started</h2>
-	<p class="cmd">git init</p>
-	<p class="desc">Create a new git repository in the current directory.</p>
-	<p class="cmd">git clone &lt;repo&gt;</p>
-	<p class="desc">Copy an existing remote repository to local machine.</p>
-    
-		<p class="cmd">git config --global user.name "Name"</p>
-		<p class="desc">Set your name for commits. Use --global to apply to all repos.</p>
-	</section>
-	<section>
-		<h2>Staging & Committing</h2>
-		<p class="cmd">git status</p>
-	<p class="desc">Show changed files, staged files, and current branch state.</p>
+```
+<main>
+    <section aria-labelledby="getting-started">
+        <h2 id="getting-started">Getting Started</h2>
 
-	<p class="cmd">git add &lt;file|.&gt;</p>
-	<p class="desc">Stage files for the next commit. Use . to stage all changes.</p>
+        <article>
+            <h3><code>git init</code></h3>
+            <p>Create a new Git repository in the current directory.</p>
+        </article>
 
-	<p class="cmd">git commit -m "message"</p>
-	<p class="desc">Create a commit from staged changes with a message.</p>
+        <article>
+            <h3><code>git clone &lt;repo&gt;</code></h3>
+            <p>Copy an existing remote repository to the local machine.</p>
+        </article>
 
-	<p class="cmd">git commit --amend</p>
-		<p class="desc">Modify the last commit (message or staged changes).</p>
-	</section>
+        <article>
+            <h3><code>git config --global user.name "Name"</code></h3>
+            <p>Set your name for commits. Use <code>--global</code> to apply it to all repositories.</p>
+        </article>
+    </section>
 
-	<section>
-	<h2>Branching & Merging</h2>
-	<p class="cmd">git branch</p>
-	<p class="desc">List local branches. Add name to create a new branch.</p>
-	<p class="cmd">git checkout &lt;branch&gt;</p>
-	<p class="desc">Switch to the specified branch.</p>
+    <section aria-labelledby="staging-committing">
+        <h2 id="staging-committing">Staging &amp; Committing</h2>
 
-	<p class="cmd">git checkout -b &lt;branch&gt;</p>
-	<p class="desc">Create a new branch and switch to it.</p>
+        <article>
+            <h3><code>git status</code></h3>
+            <p>Show changed files, staged files, and the current branch state.</p>
+        </article>
 
-	<p class="cmd">git merge &lt;branch&gt;</p>
-	<p class="desc">Merge specified branch into the current branch.</p>
+        <article>
+            <h3><code>git add &lt;file|.&gt;</code></h3>
+            <p>Stage files for the next commit. Use <code>.</code> to stage all changes.</p>
+        </article>
 
-	<p class="cmd">git rebase &lt;base&gt;</p>
-		<p class="desc">Reapply commits on top of another base tip (linearizes history).</p>
-	</section>
+        <article>
+            <h3><code>git commit -m "message"</code></h3>
+            <p>Create a commit from staged changes with a message.</p>
+        </article>
 
-	<section>
-	<h2>Remote Repositories</h2>
-	<p class="cmd">git remote -v</p>
-	<p class="desc">Show configured remote repositories and their URLs.</p>
-	<p class="cmd">git remote add origin &lt;url&gt;</p>
-	<p class="desc">Add a remote named origin pointing to a URL.</p>
+        <article>
+            <h3><code>git commit --amend</code></h3>
+            <p>Modify the last commit, including its message or staged changes.</p>
+        </article>
+    </section>
 
-	<p class="cmd">git fetch</p>
-	<p class="desc">Download objects and refs from remote without merging.</p>
+    <section aria-labelledby="branching-merging">
+        <h2 id="branching-merging">Branching &amp; Merging</h2>
 
-	<p class="cmd">git pull</p>
-	<p class="desc">Fetch from remote and merge into current branch (shortcut).</p>
+        <article>
+            <h3><code>git branch</code></h3>
+            <p>List local branches. Add a branch name to create a new branch.</p>
+        </article>
 
-	<p class="cmd">git push &lt;remote&gt; &lt;branch&gt;</p>
-		<p class="desc">Upload local branch commits to the remote repository.</p>
-	</section>
+        <article>
+            <h3><code>git checkout &lt;branch&gt;</code></h3>
+            <p>Switch to the specified branch.</p>
+        </article>
 
-	<section>
-	<h2>Inspecting & Comparing</h2>
-	<p class="cmd">git log</p>
-	<p class="desc">Show commit history. Use --oneline or --graph for compact views.</p>
-	<p class="cmd">git show &lt;commit&gt;</p>
-	<p class="desc">Show details of a specific commit (diff, message, metadata).</p>
+        <article>
+            <h3><code>git checkout -b &lt;branch&gt;</code></h3>
+            <p>Create a new branch and switch to it.</p>
+        </article>
 
-	<p class="cmd">git diff</p>
-		<p class="desc">Show unstaged changes. git diff --staged shows staged changes.</p>
-	</section>
+        <article>
+            <h3><code>git merge &lt;branch&gt;</code></h3>
+            <p>Merge the specified branch into the current branch.</p>
+        </article>
 
-	<section>
-	<h2>Undoing Changes</h2>
-	<p class="cmd">git restore &lt;file&gt;</p>
-	<p class="desc">Discard local unstaged changes to a file (restore from HEAD).</p>
-	<p class="cmd">git restore --staged &lt;file&gt;</p>
-	<p class="desc">Unstage a file (move from index back to working tree).</p>
+        <article>
+            <h3><code>git rebase &lt;base&gt;</code></h3>
+            <p>Reapply commits on top of another base tip to linearize history.</p>
+        </article>
+    </section>
 
-	<p class="cmd">git reset --hard &lt;commit&gt;</p>
-	<p class="desc">Reset index and working tree to specified commit; discards changes.</p>
+    <section aria-labelledby="remote-repositories">
+        <h2 id="remote-repositories">Remote Repositories</h2>
 
-	<p class="cmd">git revert &lt;commit&gt;</p>
-		<p class="desc">Create a new commit that undoes the changes introduced by &lt;commit&gt;</p>
-	</section>
+        <article>
+            <h3><code>git remote -v</code></h3>
+            <p>Show configured remote repositories and their URLs.</p>
+        </article>
 
-	<section>
-	<h2>Tags</h2>
-	<p class="cmd">git tag</p>
-	<p class="desc">List tags. Use git tag -a v1.0 -m "msg" to create annotated tag.</p>
-		<p class="cmd">git push origin --tags</p>
-		<p class="desc">Push all local tags to remote.</p>
-	</section>
-	<section>
-		<h2>Configuration & Helpers</h2>
-		<p class="cmd">git config --global core.editor &lt;editor&gt;</p>
-	<p class="desc">Set your default editor for commit messages.</p>
+        <article>
+            <h3><code>git remote add origin &lt;url&gt;</code></h3>
+            <p>Add a remote named <code>origin</code> pointing to a URL.</p>
+        </article>
 
-	<p class="cmd">git stash</p>
-	<p class="desc">Temporarily save working directory changes to reapply later.</p>
+        <article>
+            <h3><code>git fetch</code></h3>
+            <p>Download objects and refs from a remote without merging them.</p>
+        </article>
 
-	<p class="cmd">git stash pop</p>
-		<p class="desc">Reapply the latest stashed changes and remove them from stash list.</p>
-	</section>
+        <article>
+            <h3><code>git pull</code></h3>
+            <p>Fetch from a remote and integrate the changes into the current branch.</p>
+        </article>
 
-	<footer>
-		<p>For more details, consult git --help or https://git-scm.com/doc</p>
-	</footer>
+        <article>
+            <h3><code>git push &lt;remote&gt; &lt;branch&gt;</code></h3>
+            <p>Upload local branch commits to the remote repository.</p>
+        </article>
+    </section>
+
+    <section aria-labelledby="inspecting-comparing">
+        <h2 id="inspecting-comparing">Inspecting &amp; Comparing</h2>
+
+        <article>
+            <h3><code>git log</code></h3>
+            <p>Show commit history. Use <code>--oneline</code> or <code>--graph</code> for compact views.</p>
+        </article>
+
+        <article>
+            <h3><code>git show &lt;commit&gt;</code></h3>
+            <p>Show details of a specific commit, including its diff, message, and metadata.</p>
+        </article>
+
+        <article>
+            <h3><code>git diff</code></h3>
+            <p>Show unstaged changes. Use <code>git diff --staged</code> to show staged changes.</p>
+        </article>
+    </section>
+
+    <section aria-labelledby="undoing-changes">
+        <h2 id="undoing-changes">Undoing Changes</h2>
+
+        <article>
+            <h3><code>git restore &lt;file&gt;</code></h3>
+            <p>Discard local unstaged changes to a file by restoring it from <code>HEAD</code>.</p>
+        </article>
+
+        <article>
+            <h3><code>git restore --staged &lt;file&gt;</code></h3>
+            <p>Unstage a file by moving it from the index back to the working tree.</p>
+        </article>
+
+        <article>
+            <h3><code>git reset --hard &lt;commit&gt;</code></h3>
+            <p>Reset the index and working tree to the specified commit. This discards changes.</p>
+        </article>
+
+        <article>
+            <h3><code>git revert &lt;commit&gt;</code></h3>
+            <p>Create a new commit that undoes the changes introduced by the specified commit.</p>
+        </article>
+    </section>
+
+    <section aria-labelledby="tags">
+        <h2 id="tags">Tags</h2>
+
+        <article>
+            <h3><code>git tag</code></h3>
+            <p>
+                List tags. Use
+                <code>git tag -a v1.0 -m "msg"</code>
+                to create an annotated tag.
+            </p>
+        </article>
+
+        <article>
+            <h3><code>git push origin --tags</code></h3>
+            <p>Push all local tags to the remote repository.</p>
+        </article>
+    </section>
+
+    <section aria-labelledby="configuration-helpers">
+        <h2 id="configuration-helpers">Configuration &amp; Helpers</h2>
+
+        <article>
+            <h3><code>git config --global core.editor &lt;editor&gt;</code></h3>
+            <p>Set your default editor for commit messages.</p>
+        </article>
+
+        <article>
+            <h3><code>git stash</code></h3>
+            <p>Temporarily save working directory changes to reapply later.</p>
+        </article>
+
+        <article>
+            <h3><code>git stash pop</code></h3>
+            <p>Reapply the latest stashed changes and remove them from the stash list.</p>
+        </article>
+    </section>
+</main>
+
+<footer>
+    <p>
+        For more details, run <code>git --help</code> or visit
+        <a href="https://git-scm.com/doc">Git Documentation</a>.
+    </p>
+</footer>
+```
+
 </body>
 </html>
