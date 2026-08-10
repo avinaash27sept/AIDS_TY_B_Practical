@@ -1,132 +1,722 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Git Commands Reference</title>
-	<style>
-		body{font-family:Arial,Helvetica,sans-serif;margin:20px;line-height:1.5}
-		h1,h2{color:#222}
-	pre{background:#f6f8fa;padding:10px;border-radius:4px}
-	section{margin-bottom:20px}
-	.cmd{font-weight:600}
-		.desc{margin-left:1rem;color:#333}
-	</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Git Commands Reference</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f5f7fa;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #24292f;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d0d7de;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #0969da;
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+        }
+
+        section {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #24292f;
+            border-bottom: 2px solid #0969da;
+            padding-bottom: 8px;
+        }
+
+        .command {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: #f6f8fa;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 7px;
+        }
+
+        .command code {
+            color: #0969da;
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        .desc {
+            margin: 6px 0 0;
+            color: #555;
+        }
+
+        .copy-btn {
+            background: #0969da;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .copy-btn:hover {
+            background: #055ab5;
+        }
+
+        .learn-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .learn-btn:hover {
+            background: #1a7f37;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+        }
+
+        footer a {
+            color: #0969da;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .command {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-	<!--
-		To add the link from index.html, place this on the "Start Learning git" button or anchor:
-		<a href="git_commands.html">Start Learning git</a>
-		or if the button has an id, set: onclick="location.href='git_commands.html'"
-	-->
 
-	<h1>Git Commands Reference</h1>
-	<p>Concise, categorized git commands with short explanations.</p>
+<body>
 
-	<section>
-	<h2>Getting started</h2>
-	<p class="cmd">git init</p>
-	<p class="desc">Create a new git repository in the current directory.</p>
-	<p class="cmd">git clone &lt;repo&gt;</p>
-	<p class="desc">Copy an existing remote repository to local machine.</p>
-    
-		<p class="cmd">git config --global user.name "Name"</p>
-		<p class="desc">Set your name for commits. Use --global to apply to all repos.</p>
-	</section>
-	<section>
-		<h2>Staging & Committing</h2>
-		<p class="cmd">git status</p>
-	<p class="desc">Show changed files, staged files, and current branch state.</p>
+    <header>
+        <h1>Git Commands Reference</h1>
+        <p>Learn Git commands quickly and easily</p>
+    </header>
 
-	<p class="cmd">git add &lt;file|.&gt;</p>
-	<p class="desc">Stage files for the next commit. Use . to stage all changes.</p>
+    <main class="container">
 
-	<p class="cmd">git commit -m "message"</p>
-	<p class="desc">Create a commit from staged changes with a message.</p>
+        <!-- Search -->
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search Git commands..."
+                onkeyup="searchCommands()"
+            >
+        </div>
 
-	<p class="cmd">git commit --amend</p>
-		<p class="desc">Modify the last commit (message or staged changes).</p>
-	</section>
+        <!-- Getting Started -->
+        <section>
+            <h2>Getting Started</h2>
 
-	<section>
-	<h2>Branching & Merging</h2>
-	<p class="cmd">git branch</p>
-	<p class="desc">List local branches. Add name to create a new branch.</p>
-	<p class="cmd">git checkout &lt;branch&gt;</p>
-	<p class="desc">Switch to the specified branch.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git init</code>
+                    <button class="copy-btn" onclick="copyCommand('git init')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Create a new Git repository in the current directory.
+                </p>
+            </div>
 
-	<p class="cmd">git checkout -b &lt;branch&gt;</p>
-	<p class="desc">Create a new branch and switch to it.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git clone &lt;repo&gt;</code>
+                    <button class="copy-btn" onclick="copyCommand('git clone &lt;repo&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Copy an existing remote repository to your local machine.
+                </p>
+            </div>
 
-	<p class="cmd">git merge &lt;branch&gt;</p>
-	<p class="desc">Merge specified branch into the current branch.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git config --global user.name "Name"</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git config --global user.name &quot;Name&quot;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Set your name for commits.
+                </p>
+            </div>
 
-	<p class="cmd">git rebase &lt;base&gt;</p>
-		<p class="desc">Reapply commits on top of another base tip (linearizes history).</p>
-	</section>
+            <div class="command-item">
+                <div class="command">
+                    <code>git config --global user.email "email@example.com"</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git config --global user.email &quot;email@example.com&quot;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Set your email address for Git commits.
+                </p>
+            </div>
+        </section>
 
-	<section>
-	<h2>Remote Repositories</h2>
-	<p class="cmd">git remote -v</p>
-	<p class="desc">Show configured remote repositories and their URLs.</p>
-	<p class="cmd">git remote add origin &lt;url&gt;</p>
-	<p class="desc">Add a remote named origin pointing to a URL.</p>
+        <!-- Staging and Committing -->
+        <section>
+            <h2>Staging &amp; Committing</h2>
 
-	<p class="cmd">git fetch</p>
-	<p class="desc">Download objects and refs from remote without merging.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git status</code>
+                    <button class="copy-btn" onclick="copyCommand('git status')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show changed files, staged files, and the current branch.
+                </p>
+            </div>
 
-	<p class="cmd">git pull</p>
-	<p class="desc">Fetch from remote and merge into current branch (shortcut).</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git add &lt;file&gt;</code>
+                    <button class="copy-btn" onclick="copyCommand('git add &lt;file&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Stage a specific file for the next commit.
+                </p>
+            </div>
 
-	<p class="cmd">git push &lt;remote&gt; &lt;branch&gt;</p>
-		<p class="desc">Upload local branch commits to the remote repository.</p>
-	</section>
+            <div class="command-item">
+                <div class="command">
+                    <code>git add .</code>
+                    <button class="copy-btn" onclick="copyCommand('git add .')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Stage all changes in the current directory.
+                </p>
+            </div>
 
-	<section>
-	<h2>Inspecting & Comparing</h2>
-	<p class="cmd">git log</p>
-	<p class="desc">Show commit history. Use --oneline or --graph for compact views.</p>
-	<p class="cmd">git show &lt;commit&gt;</p>
-	<p class="desc">Show details of a specific commit (diff, message, metadata).</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git commit -m "message"</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git commit -m &quot;message&quot;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Create a commit using the staged changes.
+                </p>
+            </div>
 
-	<p class="cmd">git diff</p>
-		<p class="desc">Show unstaged changes. git diff --staged shows staged changes.</p>
-	</section>
+            <div class="command-item">
+                <div class="command">
+                    <code>git commit --amend</code>
+                    <button class="copy-btn" onclick="copyCommand('git commit --amend')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Modify the most recent commit.
+                </p>
+            </div>
+        </section>
 
-	<section>
-	<h2>Undoing Changes</h2>
-	<p class="cmd">git restore &lt;file&gt;</p>
-	<p class="desc">Discard local unstaged changes to a file (restore from HEAD).</p>
-	<p class="cmd">git restore --staged &lt;file&gt;</p>
-	<p class="desc">Unstage a file (move from index back to working tree).</p>
+        <!-- Branching -->
+        <section>
+            <h2>Branching &amp; Merging</h2>
 
-	<p class="cmd">git reset --hard &lt;commit&gt;</p>
-	<p class="desc">Reset index and working tree to specified commit; discards changes.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git branch</code>
+                    <button class="copy-btn" onclick="copyCommand('git branch')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    List local branches.
+                </p>
+            </div>
 
-	<p class="cmd">git revert &lt;commit&gt;</p>
-		<p class="desc">Create a new commit that undoes the changes introduced by &lt;commit&gt;</p>
-	</section>
+            <div class="command-item">
+                <div class="command">
+                    <code>git switch &lt;branch&gt;</code>
+                    <button class="copy-btn" onclick="copyCommand('git switch &lt;branch&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Switch to another branch.
+                </p>
+            </div>
 
-	<section>
-	<h2>Tags</h2>
-	<p class="cmd">git tag</p>
-	<p class="desc">List tags. Use git tag -a v1.0 -m "msg" to create annotated tag.</p>
-		<p class="cmd">git push origin --tags</p>
-		<p class="desc">Push all local tags to remote.</p>
-	</section>
-	<section>
-		<h2>Configuration & Helpers</h2>
-		<p class="cmd">git config --global core.editor &lt;editor&gt;</p>
-	<p class="desc">Set your default editor for commit messages.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git switch -c &lt;branch&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git switch -c &lt;branch&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Create a new branch and switch to it.
+                </p>
+            </div>
 
-	<p class="cmd">git stash</p>
-	<p class="desc">Temporarily save working directory changes to reapply later.</p>
+            <div class="command-item">
+                <div class="command">
+                    <code>git merge &lt;branch&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git merge &lt;branch&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Merge another branch into the current branch.
+                </p>
+            </div>
 
-	<p class="cmd">git stash pop</p>
-		<p class="desc">Reapply the latest stashed changes and remove them from stash list.</p>
-	</section>
+            <div class="command-item">
+                <div class="command">
+                    <code>git rebase &lt;base&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git rebase &lt;base&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Reapply commits on top of another base branch.
+                </p>
+            </div>
+        </section>
 
-	<footer>
-		<p>For more details, consult git --help or https://git-scm.com/doc</p>
-	</footer>
+        <!-- Remote -->
+        <section>
+            <h2>Remote Repositories</h2>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git remote -v</code>
+                    <button class="copy-btn" onclick="copyCommand('git remote -v')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show configured remote repositories and their URLs.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git remote add origin &lt;url&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git remote add origin &lt;url&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Add a remote repository named origin.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git fetch</code>
+                    <button class="copy-btn" onclick="copyCommand('git fetch')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Download changes from a remote without merging them.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git pull</code>
+                    <button class="copy-btn" onclick="copyCommand('git pull')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Fetch and integrate changes from a remote repository.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git push &lt;remote&gt; &lt;branch&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git push &lt;remote&gt; &lt;branch&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Upload local commits to a remote repository.
+                </p>
+            </div>
+        </section>
+
+        <!-- Inspecting -->
+        <section>
+            <h2>Inspecting &amp; Comparing</h2>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git log</code>
+                    <button class="copy-btn" onclick="copyCommand('git log')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show commit history.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git log --oneline --graph</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git log --oneline --graph')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show a compact graphical view of commit history.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git show &lt;commit&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git show &lt;commit&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show details and changes from a specific commit.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git diff</code>
+                    <button class="copy-btn" onclick="copyCommand('git diff')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show unstaged changes.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git diff --staged</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git diff --staged')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Show changes that are currently staged.
+                </p>
+            </div>
+        </section>
+
+        <!-- Undo -->
+        <section>
+            <h2>Undoing Changes</h2>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git restore &lt;file&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git restore &lt;file&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Discard unstaged changes to a file.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git restore --staged &lt;file&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git restore --staged &lt;file&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Unstage a file without deleting its changes.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git reset --hard &lt;commit&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git reset --hard &lt;commit&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Reset the working tree and index to a specific commit.
+                    Be careful because local changes can be lost.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git revert &lt;commit&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git revert &lt;commit&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Create a new commit that reverses an earlier commit.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tags -->
+        <section>
+            <h2>Tags</h2>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git tag</code>
+                    <button class="copy-btn" onclick="copyCommand('git tag')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    List all tags.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git tag -a v1.0 -m "Release 1.0"</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git tag -a v1.0 -m &quot;Release 1.0&quot;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Create an annotated tag.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git push origin --tags</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git push origin --tags')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Push all local tags to the remote repository.
+                </p>
+            </div>
+        </section>
+
+        <!-- Helpers -->
+        <section>
+            <h2>Configuration &amp; Helpers</h2>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git config --global core.editor &lt;editor&gt;</code>
+                    <button class="copy-btn"
+                        onclick="copyCommand('git config --global core.editor &lt;editor&gt;')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Set your default editor for Git.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git stash</code>
+                    <button class="copy-btn" onclick="copyCommand('git stash')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Temporarily save uncommitted changes.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git stash pop</code>
+                    <button class="copy-btn" onclick="copyCommand('git stash pop')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Reapply the latest stash and remove it from the stash list.
+                </p>
+            </div>
+
+            <div class="command-item">
+                <div class="command">
+                    <code>git clean -n</code>
+                    <button class="copy-btn" onclick="copyCommand('git clean -n')">
+                        Copy
+                    </button>
+                </div>
+                <p class="desc">
+                    Preview untracked files that could be removed.
+                </p>
+            </div>
+        </section>
+
+        <!-- Learning button -->
+        <section>
+            <h2>Ready to Learn?</h2>
+            <p>
+                Start practicing Git commands and improve your version-control
+                skills.
+            </p>
+
+            <a href="git_commands.html" class="learn-btn">
+                Start Learning Git
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            For more details, visit
+            <a href="https://git-scm.com/doc" target="_blank">
+                Git Documentation
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        // Copy Git command
+        function copyCommand(command) {
+            const text = command
+                .replace(/&lt;/g, "<")
+                .replace(/&gt;/g, ">")
+                .replace(/&quot;/g, '"');
+
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert("Command copied!");
+                })
+                .catch(() => {
+                    alert("Unable to copy command.");
+                });
+        }
+
+        // Search commands
+        function searchCommands() {
+            const searchText =
+                document.getElementById("searchInput").value.toLowerCase();
+
+            const items =
+                document.querySelectorAll(".command-item");
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+
+                if (text.includes(searchText)) {
+                    item.classList.remove("hidden");
+                } else {
+                    item.classList.add("hidden");
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
+
